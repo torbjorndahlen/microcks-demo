@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "29aac900-6bfa-464b-95ab-1c1f6abeb86f",
 		"name": "My_API",
-		"description": "version 1.2 - This is a simple 2.0 API definition.",
+		"description": "version 1.1 - This is a simple 2.0 API definition.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -20,9 +20,22 @@
 									"script": {
 										"id": "cd1dd95b-f60e-4011-8f0a-47724f188582",
 										"exec": [
-											"pm.test(\"GET widgets/:widgetId test\", function () {",
+											"pm.test(\"GET widgets/:widgetId\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    tests[\"Valid response\"] = pm.expect(pm.response.text()).to.include(\"name\");",
+											"",
+											"    var schema = {",
+											"    ",
+											"    ",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"name\": {\"type\": \"string\"},",
+											"            \"description\": {\"type\": \"string\"}",
+											"        }",
+											" ",
+											"    };",
+											"",
+											"    tests['Valid response'] = tv4.validate(jsonData, schema);",
+											"",
 											"});",
 											"",
 											""
@@ -105,7 +118,7 @@
 									"script": {
 										"id": "193810fd-d14a-4e16-9b4b-674fd01adaa8",
 										"exec": [
-											"pm.test(\"Successful PUT request\", function () {",
+											"pm.test(\"PUT /widgets/:widgetId request\", function () {",
 											"    tests[\"Valid response\"] = pm.expect(pm.response.code).to.be.oneOf([201,202]);",
 											"});"
 										],
@@ -153,34 +166,6 @@
 							},
 							"response": [
 								{
-									"name": "Successful response.",
-									"originalRequest": {
-										"method": "PUT",
-										"header": [
-											{
-												"key": "Content-Type",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
-										},
-										"url": "{{baseUrl}}/widgets/<string>"
-									},
-									"status": "Accepted",
-									"code": 202,
-									"_postman_previewlanguage": "text",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain"
-										}
-									],
-									"cookie": [],
-									"body": ""
-								},
-								{
 									"name": "Update a Widget",
 									"originalRequest": {
 										"method": "PUT",
@@ -192,7 +177,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
+											"raw": "{\n\t\"name\": \"updated widget\",\n\t\"description\": \"an updated widget\"\n}"
 										},
 										"url": {
 											"raw": "https://ef5e8382-b866-41fd-9e20-3ae28ecd908a.mock.pstmn.io/widgets/:widgetId",
@@ -221,7 +206,7 @@
 									"_postman_previewlanguage": null,
 									"header": null,
 									"cookie": [],
-									"body": "{\n\t\"name\": \"new widget\",\n\t\"description\": \"a new widget\"\n{"
+									"body": ""
 								}
 							]
 						},
@@ -233,9 +218,11 @@
 									"script": {
 										"id": "9a792b8f-78ad-445b-9f21-94ecdf722653",
 										"exec": [
-											"pm.test(\"Successful DELETE request\", function () {",
+											"pm.test(\"DELETE /widgets/:widgetId\", function () {",
 											"    tests[\"Valid response\"] = pm.expect(pm.response.code).to.be.oneOf([204]);",
-											"});"
+											"});",
+											"",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -318,8 +305,23 @@
 							"script": {
 								"id": "609de155-cfca-4801-84b4-09c1599b5315",
 								"exec": [
-									"pm.test(\"Body matches string\", function () {",
-									"    tests[\"Valid response\"] = pm.expect(pm.response.text()).to.include(\"widget\");",
+									"pm.test(\"GET widgets\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    var schema = {",
+									"    ",
+									"    \"type\": \"array\",",
+									"    \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"            \"name\": {\"type\": \"string\"},",
+									"            \"description\": {\"type\": \"string\"}",
+									"        }",
+									"    }",
+									"    };",
+									"",
+									"    tests['Valid response'] = tv4.validate(jsonData, schema);",
+									"",
 									"});"
 								],
 								"type": "text/javascript"
@@ -360,9 +362,21 @@
 							"script": {
 								"id": "bee3aa27-36ee-4b72-9fc0-55fd6227d17f",
 								"exec": [
-									"pm.test(\"Successful POST request\", function () {",
-									"    tests[\"Valid response\"] = pm.expect(pm.response.code).to.be.oneOf([201,202]);",
-									"});"
+									"pm.test(\"POST widgets/\", function () {",
+									"    var jsonData = pm.response.json();",
+									"",
+									"    var schema = {",
+									"        \"type\": \"object\",",
+									"        \"properties\": {",
+									"            \"id\": {\"type\": \"string\"}",
+									"        }",
+									"    };",
+									"",
+									"    tests['Valid response'] = tv4.validate(jsonData, schema);",
+									"",
+									"});",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -465,7 +479,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": "{\n\t\"id\": \"1\"\n}"
 						}
 					]
 				}
@@ -496,7 +510,7 @@
 	],
 	"variable": [
 		{
-			"id": "3eaeb8cb-5102-4d90-8b4b-b5f210c0caee",
+			"id": "9faa456a-f265-47ba-af07-76e0e6f79dee",
 			"key": "baseUrl",
 			"value": "/",
 			"type": "string"
