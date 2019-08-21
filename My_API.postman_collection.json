@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "29aac900-6bfa-464b-95ab-1c1f6abeb86f",
-		"name": "My API",
-		"description": "version=1.0 - This is a simple 2.0 API definition.",
+		"name": "My_API",
+		"description": "version 1.1 - This is a simple 2.0 API definition.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -14,6 +14,23 @@
 					"item": [
 						{
 							"name": "Get a Widget",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cd1dd95b-f60e-4011-8f0a-47724f188582",
+										"exec": [
+											"var expectedId = pm.variables.get(\"widgetId\");",
+											"pm.test(\"GET widgets/:widgetId test\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.id).to.eql(expectedId);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -82,6 +99,20 @@
 						},
 						{
 							"name": "Update a Widget",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "193810fd-d14a-4e16-9b4b-674fd01adaa8",
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -113,7 +144,7 @@
 									"variable": [
 										{
 											"key": "widgetId",
-											"value": "<string>",
+											"value": "1",
 											"description": "A unique identifier for a `Widget`."
 										}
 									]
@@ -196,6 +227,20 @@
 						},
 						{
 							"name": "Delete a Widget",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9a792b8f-78ad-445b-9f21-94ecdf722653",
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -267,6 +312,20 @@
 				},
 				{
 					"name": "List All Widgets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "609de155-cfca-4801-84b4-09c1599b5315",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"widget\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -289,12 +348,26 @@
 							"_postman_previewlanguage": null,
 							"header": null,
 							"cookie": [],
-							"body": "[\n {\n  \"name\": \"this has been changed\",\n  \"description\": \"some text\"\n },\n {\n  \"name\": \"some text\",\n  \"description\": \"some text\"\n }\n]"
+							"body": "[\n {\n  \"name\": \"this widget\",\n  \"description\": \"a widget\"\n },\n {\n  \"name\": \"some widget\",\n  \"description\": \"some widget\"\n }\n]"
 						}
 					]
 				},
 				{
 					"name": "Create a Widget",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bee3aa27-36ee-4b72-9fc0-55fd6227d17f",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -326,7 +399,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
+									"raw": "{\n    \"name\": \"new_widget\",\n    \"description\": \"This is a new widget\"\n}"
 								},
 								"url": "https://ef5e8382-b866-41fd-9e20-3ae28ecd908a.mock.pstmn.io/widgets"
 							},
@@ -399,9 +472,31 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1555bd41-0f13-43c0-bbf8-3153a0b04841",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d6bb07ba-c6e2-4fb6-ac09-69b632128d4a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "baseUrl",
+			"id": "e4e330b7-385a-485f-ad94-c69d8cf771c0",
 			"key": "baseUrl",
 			"value": "/",
 			"type": "string"
