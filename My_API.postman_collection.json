@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "29aac900-6bfa-464b-95ab-1c1f6abeb86f",
 		"name": "My API",
-		"description": "This is a simple 2.0 API definition.",
+		"description": "version=1.0 - This is a simple 2.0 API definition.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
