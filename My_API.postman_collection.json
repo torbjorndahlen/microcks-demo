@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "29aac900-6bfa-464b-95ab-1c1f6abeb86f",
 		"name": "My_API",
-		"description": "version=1.1 - This is a simple 2.0 API definition.",
+		"description": "version=1.2 - This is a simple 2.0 API definition.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -368,7 +368,7 @@
 									"    var schema = {",
 									"        \"type\": \"object\",",
 									"        \"properties\": {",
-									"            \"id\": {\"type\": \"string\"}",
+									"            \"widgetId\": {\"type\": \"string\"}",
 									"        }",
 									"    };",
 									"",
@@ -395,7 +395,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"<string>\",\n    \"description\": \"<string>\"\n}"
+							"raw": "{\n    \"name\": \"a new widget\",\n    \"description\": \"my new widget\"\n}"
 						},
 						"url": "https://ef5e8382-b866-41fd-9e20-3ae28ecd908a.mock.pstmn.io/widgets",
 						"description": "Creates a new instance of a `Widget`."
@@ -442,10 +442,6 @@
 									"value": ""
 								},
 								{
-									"key": "Content-Type",
-									"value": "text/plain; charset=utf-8"
-								},
-								{
 									"key": "Date",
 									"value": "Mon, 19 Aug 2019 12:32:10 GMT"
 								},
@@ -476,10 +472,16 @@
 								{
 									"key": "Connection",
 									"value": "keep-alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
 								}
 							],
 							"cookie": [],
-							"body": "{\n\t\"id\": \"1\"\n}"
+							"body": "{\n\t\"widgetId\": \"1\"\n}"
 						}
 					]
 				}
@@ -510,7 +512,7 @@
 	],
 	"variable": [
 		{
-			"id": "9faa456a-f265-47ba-af07-76e0e6f79dee",
+			"id": "d53c4115-b0b6-45e6-bd02-dec8bad483f5",
 			"key": "baseUrl",
 			"value": "/",
 			"type": "string"
