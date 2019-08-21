@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "29aac900-6bfa-464b-95ab-1c1f6abeb86f",
 		"name": "My_API",
-		"description": "version=1.3 - This is a simple 2.0 API definition.",
+		"description": "version=1.4 - This is a simple 2.0 API definition.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -118,7 +118,7 @@
 									"script": {
 										"id": "193810fd-d14a-4e16-9b4b-674fd01adaa8",
 										"exec": [
-											"pm.test(\"PUT /widgets/:widgetId request\", function () {",
+											"pm.test(\"PUT /widgets/:widgetId\", function () {",
 											"    tests[\"Valid response\"] = pm.expect(pm.response.code).to.be.oneOf([201,202]);",
 											"});"
 										],
@@ -466,10 +466,6 @@
 									"value": "v=1;t=08c50515018a2a22"
 								},
 								{
-									"key": "Content-Length",
-									"value": "20"
-								},
-								{
 									"key": "Connection",
 									"value": "keep-alive"
 								},
@@ -512,7 +508,7 @@
 	],
 	"variable": [
 		{
-			"id": "e956f31e-3833-4f54-873b-cefd40d9ac5b",
+			"id": "f648f362-7132-4f6d-a478-b4c535042f6d",
 			"key": "baseUrl",
 			"value": "/",
 			"type": "string"
